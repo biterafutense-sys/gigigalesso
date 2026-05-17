@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tentativa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Teko:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0f1923;
+            background-image: 
+                linear-gradient(135deg, #0f1923 25%, #1a242e 25%, #1a242e 50%, #0f1923 50%, #0f1923 75%, #1a242e 75%, #1a242e 100%);
+            background-size: 40px 40px;
+            font-family: 'Teko', sans-serif;
+            color: #ece8e1;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(15, 25, 35, 0.95);
+            border: 2px solid #ff4655;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 70, 85, 0.3);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .tag {
+            background: #ff4655;
+            color: #0f1923;
+            display: inline-block;
+            padding: 5px 15px;
+            font-family: 'Anton', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: 3rem;
+            color: #ff4655;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .subtexto {
+            font-size: 1.5rem;
+            color: #ece8e1;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            border: 2px solid #ff4655;
+            background: #ff4655;
+            color: #ece8e1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: #ece8e1;
+            color: #ff4655;
+            transform: scale(1.05);
+        }
+
+        #btnRecusar {
+            position: relative; 
+        }
+
+        .container.final {
+            display: none;
+        }
+
+        .container.final.ativo {
+            display: block;
+        }
+
+        .container.inicial.sumir {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container inicial" id="containerInicial">
+        <div class="tag">gigi galesso</div>
+        <h1>alerta</h1>
+        
+        <!-- TROCA ESSA MENSAGEM AQUI -->
+        <p class="subtexto" id="mensagem">
+            oi gi, se caso tu abriu isso aqui, oq eu acho dificil kkk, só quero que saiba que você é minha maior saudade.<br>
+            eu não soube lidar com a situação e sei o quão decepcionante isso foi pra você. me entendi mt com essa situação e entendo o quão ruim foi.<br><br>
+            só quero uma chance de poder consertar oq eu msm quebrei, eu sinto mt msm. pode ser um recomeço?
+        </p>
+
+        <div class="botoes">
+            <button class="btn" id="btnAceitar" onclick="aceitou()">sim</button>
+            <button class="btn" id="btnRecusar" onclick="fugir()">não</button>
+        </div>
+    </div>
+
+    <div class="container final" id="containerFinal">
+        <div class="tag">sabia bocó</div>
+        <h1>me desculpa</h1>
+        
+        <!-- TROCA ESSA MENSAGEM AQUI TAMBÉM -->
+        <p class="subtexto">
+            não imaginava que ia aceitar véi kkkkk, mas brincadeiras a parte<br>
+            tenho muita saudade de vc cara<br><br>
+            se vai me desbloquear ou não, tudo bem, oq importa pra mim é só você saber que oq eu sinto e minhas sinceras desculpas, não quero ficar assim cntg.
+        </p>
+    </div>
+
+    <script>
+        function aceitou() {
+            document.getElementById('containerInicial').classList.add('sumir');
+            document.getElementById('containerFinal').classList.add('ativo');
+        }
+
+        function fugir() {
+            let btn = document.getElementById('btnRecusar');
+            let container = document.querySelector('.container.inicial');
+
+            let maxX = container.clientWidth - btn.offsetWidth - 20;
+            let maxY = container.clientHeight - btn.offsetHeight - 20;
+
+            let randomX = Math.floor(Math.random() * maxX);
+            let randomY = Math.floor(Math.random() * maxY);
+
+            btn.style.position = 'absolute';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>
